@@ -37,3 +37,5 @@
 ### 문의글
 * 게시글이 페이징 형태로 나타납니다.
 * 관리자는 답변을 등록할 수 있습니다.
+
+<img src="https://github.com/tnals5152/Images/blob/main/localhost_8080_Busway2_shop.jsp.png" width="700">
