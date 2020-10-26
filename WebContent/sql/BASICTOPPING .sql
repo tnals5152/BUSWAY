@@ -1,0 +1,41 @@
+create sequence BASICTOPPING_SEQ
+increment 
+by 1
+start with 1
+nocache;
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '채소', '양파', 2 ,59);
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '채소', '양상추', 1 ,59);
+
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '채소', '피망', 1 ,59);
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '채소', '오이', 1 ,59);
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '채소', '토마토', 1 ,59);
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '치즈', '아메리칸치즈', 1 ,59);
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '소스', '사우스웨스트', 1 ,59);
+
+INSERT INTO BASICTOPPING 
+            (IDX, SORT, NAME, QUAN, MENU_IDX)
+VALUES (BASICTOPPING_SEQ.nextVal, '빵', '허니오트 ', 1 ,59);
+
+
+

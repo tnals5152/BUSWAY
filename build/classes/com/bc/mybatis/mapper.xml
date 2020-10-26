@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="busway">
+	
+	<select id="userslogin" resultType="com.bc.model.vo.UsersVO" parameterType="Map">
+		SELECT USERID, PWD, NICKNAME, NAME, ADDR, PHONE, CARD, EMAIL, CNT, USING FROM USERS
+			WHERE USERID = #{id}
+			AND PWD = #{pwd}
+			
+	</select>
+	
+	<select id="updateUser" resultType="com.bc.model.vo.UsersVO" parameterType="String">
+		SELECT  USERID, PWD, NICKNAME, NAME, ADDR, PHONE, CARD, EMAIL, CNT, USING FROM USERS
+		WHERE USERID = #{id}
+	</select>
+	
+	<update id="userupdate" parameterType="com.bc.model.vo.UsersVO">
+		UPDATE USERS
+		SET NICKNAME = #{nickname},
+		ADDR = #{addr},
+		PHONE = #{phone},
+		CARD = #{card},
+		EMAIL = #{email},
+		PWD = #{pwd}
+		WHERE USERID = #{userid}
+	</update>
+
+	<select id="list" parameterType="string"
+			resultType="com.bc.model.vo.ShopVO">
+		<!-- SELECT num, category, p_num, p_name, p_company
+     		 , p_price, p_saleprice, p_image_s, p_image_l
+             , p_content, p_date
+        FROM SHOP_T
+        WHERE CATEGORY = #{category} -->
+        SELECT idx, menuname, sale, menusort, price15, price30, p_img, p_content
+        FROM BASICMENU
+        WHERE MENUSORT = #{menusort}
+	</select>
+	
+	<!-- resultType 값으로 configuration 에 정의한 별칭 사용 -->
+	<select id="one" parameterType="string"
+			resultType="com.bc.model.vo.ShopVO">
+		SELECT idx, menuname, sale, menusort, price15
+     		 , price30, p_img, p_content
+        FROM BASICMENU
+        WHERE IDX = #{idx}
+	</select>
+	
+	<select id="checkId" parameterType="String" resultType="integer">
+		SELECT COUNT(*)
+		FROM USERS
+		WHERE USERID = #{id}
+	</select>
+	
+	<insert id="insertuser" parameterType="com.bc.model.vo.UsersVO">
+		INSERT INTO USERS (USERID, PWD, NICKNAME, NAME, ADDR, PHONE, CARD, EMAIL)
+		VALUES (#{userid}, #{pwd}, #{nickname}, #{name}, #{addr}, #{phone}, #{card}, #{email})
+	</insert>
+	
+	<select id="finduserid" parameterType="Map" resultType="String">
+		SELECT USERID
+		FROM USERS
+		WHERE NAME = #{name}
+		AND PHONE = #{phone}
+	</select>
+	
+	<select id="finduserpwd" parameterType="Map" resultType="String">
+		SELECT PWD
+		FROM USERS
+		WHERE USERID = #{id}
+		AND NAME = #{name}
+		AND PHONE = #{phone}
+	</select>
+	
+	<select id="adminLogin" resultType="com.bc.model.vo.StoreVO" parameterType="map">
+		SELECT *
+		FROM STORE
+		WHERE CODE = #{code}
+		AND PWD = #{pwd}
+	</select>
+	
+	
+	<!-- 전체 게시글 개수 조회 -->
+	<select id="q_totalCount" resultType="int">
+		SELECT COUNT(*) FROM QNA
+	</select>
+	
+	<!-- 페이지에 표시할 게시글 조회 
+		parameterType="Map" : begin, end 값 전달 용도
+		key-value 형태의 Map 사용 바인드변수명이 key가 됨-->
+	<select id="q_list" resultType="com.bc.model.vo.Q_BBSVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM R_NUM, QNA.*
+		          FROM (SELECT *
+		                  FROM QNA
+		                 ORDER BY Q_IDX DESC
+		               ) QNA
+		        )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 게시글 하나 조회 -->
+	<select id="q_one" resultType="com.bc.model.vo.Q_BBSVO" parameterType="String">
+		SELECT Q_IDX, TITLE, CONTENT, VIEWS, REGDATE,
+		       USERID, IMGPATH
+		FROM QNA
+		WHERE Q_IDX = #{q_idx}
+	</select>
+	
+	<!-- 게시글 입력 -->
+	<insert id="q_insert" parameterType="com.bc.model.vo.Q_BBSVO">
+		INSERT INTO QNA
+		       (Q_IDX, IMGPATH, TITLE, CONTENT, VIEWS,
+		       REGDATE, USERID)
+		VALUES (#{q_idx}, #{imgpath}, #{title}, #{content}, 0,
+		       SYSDATE, #{userid})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="q_update" parameterType="com.bc.model.vo.Q_BBSVO">
+		UPDATE QNA
+		   SET TITLE = #{title}, 
+		       REGDATE = SYSDATE,
+		       CONTENT = #{content},
+		       USERID = #{userid}
+		WHERE Q_IDX = #{q_idx}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="q_delete" parameterType="String">
+		DELETE FROM QNA WHERE Q_IDX = #{q_idx}
+	</delete>
+	
+	<!-- 조회수 1 증가 처리 -->
+	<update id="q_views" parameterType="int">
+		UPDATE QNA SET VIEWS = VIEWS + 1 WHERE Q_IDX = #{q_idx}
+	</update>
+	
+	<!-- 상세 게시글 검색 -->
+	
+	<select id="q_search" parameterType="map" 
+			resultType="com.bc.model.vo.Q_BBSVO">
+		SELECT *
+		  FROM QNA
+		<choose>
+			<when test="idx == 0">
+				WHERE TITLE LIKE  '%'||#{keyword}||'%'
+			</when>
+			<when test="idx == 1">
+				WHERE USERID LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+		ORDER BY Q_IDX
+	</select>
+	
+	<!-- 문의 댓글 조회 -->
+	<select id="c_list" parameterType="String"
+			resultType="com.bc.model.vo.CommVO">
+		SELECT *
+		FROM COMMENTS
+		WHERE Q_IDX = #{q_idx}
+		ORDER BY C_IDX DESC
+	</select>
+	
+	<!-- 문의 댓글입력 -->
+	<insert id="c_insert" parameterType="com.bc.model.vo.CommVO">
+		INSERT INTO COMMENTS
+		       (C_IDX, Q_IDX, STORE_CODE, CONTENT, C_REGDATE)
+		VALUES (COMMENTS_SEQ.NEXTVAL, #{q_idx }, #{store_code }, #{content }, SYSDATE)
+	</insert>
+	<!-- 댓글 삭제 -->
+	<delete id="c_delete" parameterType="String">
+		DELETE FROM COMMENTS WHERE C_IDX = #{c_idx}
+	</delete>
+	
+	
+	<!-- 뉴스, 공지사항 -->
+	
+	<!-- 전체 게시글 개수 조회 -->
+	<select id="n_totalCount" resultType="int">
+		SELECT COUNT(*) FROM NEWSNOTICE
+	</select>
+	
+	<!-- 페이지에 표시할 게시글 조회 
+		parameterType="Map" : begin, end 값 전달 용도
+		key-value 형태의 Map 사용 바인드변수명이 key가 됨-->
+	<select id="n_list" resultType="com.bc.model.vo.N_BBSVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM R_NUM, NEWSNOTICE.*
+		          FROM (SELECT *
+		                  FROM NEWSNOTICE
+		                 ORDER BY N_IDX DESC
+		               ) NEWSNOTICE
+		        )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 게시글 하나 조회 -->
+	<select id="n_one" resultType="com.bc.model.vo.N_BBSVO" parameterType="String">
+		SELECT N_IDX, TITLE, REGDATE, CONTENT, VIEWS, IMGPATH, CODE
+		FROM NEWSNOTICE
+		WHERE N_IDX = #{n_idx}
+	</select>
+	
+	<!-- 게시글 입력 -->
+	<insert id="n_insert" parameterType="com.bc.model.vo.N_BBSVO">
+		INSERT INTO NEWSNOTICE
+		       (TITLE, REGDATE, CONTENT, VIEWS, IMGPATH, CODE)
+		VALUES (#{title}, SYSDATE, #{content}, 0, #{imgpath}, #{code})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="n_update" parameterType="com.bc.model.vo.N_BBSVO">
+		UPDATE NEWSNOTICE
+		   SET TITLE = #{title}, 
+		       REGDATE = SYSDATE,
+		       CONTENT = #{content},
+		       CODE = #{code}
+		WHERE N_IDX = #{n_idx}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="n_delete" parameterType="String">
+		DELETE FROM NEWSNOTICE WHERE N_IDX = #{n_idx}
+	</delete>
+	
+	<!-- 조회수 1 증가 처리 -->
+	<update id="n_views" parameterType="int">
+		UPDATE NEWSNOTICE SET VIEWS = VIEWS + 1 WHERE N_IDX = #{n_idx}
+	</update>
+	
+	<!-- 상세 게시글 검색 -->
+	
+	<select id="n_search" parameterType="map" 
+			resultType="com.bc.model.vo.N_BBSVO">
+		SELECT *
+		  FROM NEWSNOTICE
+		<choose>
+			<when test="idx == 0">
+				WHERE TITLE LIKE  '%'||#{keyword}||'%'
+			</when>
+			<when test="idx == 1">
+				WHERE CODE LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+		ORDER BY N_IDX
+	</select>
+	
+	
+	<!-- 이벤트 -->
+	
+	<!-- 전체 게시글 개수 조회 -->
+	<select id="e_totalCount" resultType="int">
+		SELECT COUNT(*) FROM EVENT
+	</select>
+	
+	<!-- 페이지에 표시할 게시글 조회 
+		parameterType="Map" : begin, end 값 전달 용도
+		key-value 형태의 Map 사용 바인드변수명이 key가 됨-->
+	<select id="e_list" resultType="com.bc.model.vo.E_BBSVO"
+			parameterType="Map">
+		SELECT *
+		  FROM (SELECT ROWNUM R_NUM, EVENT.*
+		          FROM (SELECT *
+		                  FROM EVENT
+		                 ORDER BY E_IDX DESC
+		               ) EVENT
+		        )
+		 WHERE R_NUM BETWEEN #{begin} AND #{end}
+	</select>
+	
+	<!-- 게시글 하나 조회 -->
+	<select id="e_one" resultType="com.bc.model.vo.E_BBSVO" parameterType="String">
+		SELECT E_IDX, TITLE, START_DATE, END_DATE, CONTENT, VIEWS, IMGPATH, CODE
+		FROM EVENT
+		WHERE E_IDX = #{e_idx}
+	</select>
+	
+	<!-- 게시글 입력 -->
+	<insert id="e_insert" parameterType="com.bc.model.vo.E_BBSVO">
+		INSERT INTO EVENT
+		       (TITLE, START_DATE, END_DATE, CONTENT, VIEWS, IMGPATH, CODE)
+		VALUES (#{title}, #{start_date}, #{end_date}, #{content}, 0, #{imgpath}, #{code})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="e_update" parameterType="com.bc.model.vo.E_BBSVO">
+		UPDATE EVENT
+		   SET TITLE = #{title}, 
+		       START_DATE = #{start_date},
+		       END_DATE = #{end_date},
+		       CONTENT = #{content},
+		       CODE = #{code}
+		WHERE E_IDX = #{e_idx}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="e_delete" parameterType="String">
+		DELETE FROM EVENT WHERE E_IDX = #{e_idx}
+	</delete>
+	
+	<!-- 조회수 1 증가 처리 -->
+	<update id="e_views" parameterType="int">
+		UPDATE EVENT SET VIEWS = VIEWS + 1 WHERE E_IDX = #{e_idx}
+	</update>
+	
+	<!-- 상세 게시글 검색 -->
+	
+	<select id="e_search" parameterType="map" 
+			resultType="com.bc.model.vo.E_BBSVO">
+		SELECT *
+		  FROM EVENT
+		<choose>
+			<when test="idx == 0">
+				WHERE TITLE LIKE  '%'||#{keyword}||'%'
+			</when>
+			<when test="idx == 1">
+				WHERE CODE LIKE '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				WHERE 1 = 2
+			</otherwise>
+		</choose>
+		ORDER BY E_IDX
+	</select>
+	
+	
+	<select id="cartlist" parameterType="String" resultType="com.bc.model.vo.CartVO">
+		SELECT 	c.idx as idx, bread_size, roasting, basic_idx, userid, store_code, cnt, one_total,
+				 menuname, sale, menusort, price15, price30, p_img, p_content
+		FROM CART c, BASICMENU b
+		WHERE b.idx = c.basic_idx
+		AND USERID = #{userid}
+	</select>
+	
+	<select id="topping" parameterType="int" resultType="com.bc.model.vo.CartToppingVO">
+		SELECT IDX, CART_IDX, NAME, QUAN, ORDERDATE
+		FROM CARTTOPPING
+		WHERE cart_idx= #{cart_idx}
+	
+	</select>
+	
+	<select id="menulist" parameterType="String" resultType="com.bc.model.vo.ShopVO">
+		SELECT idx, menuname, menusort, p_img, p_content, sale, price15, price30
+		FROM BASICMENU
+		WHERE MENUSORT = #{menusort}
+		ORDER BY MENUNAME ASC
+	</select>
+	
+	<select id="detail" parameterType="String" resultType="com.bc.model.vo.ShopVO">
+		SELECT idx, menuname, menusort, p_img, p_content, price15, price30
+		FROM BASICMENU
+		WHERE idx= #{idx}
+	
+	</select>
+	
+	<select id="stuff" parameterType="String" resultType="com.bc.model.vo.StuffVO">
+		SELECT SORT, NAME, PRICE, IMAGE
+		FROM ALLTOPPING
+		WHERE SORT= #{sort}
+		ORDER BY SORT ASC
+	
+	</select>
+	
+	<select id="allStuffList" resultType="com.bc.model.vo.StuffVO">
+		SELECT *
+		FROM ALLTOPPING
+		ORDER BY SORT ASC
+	</select>
+	
+	<insert id="insertToCart" parameterType="map">
+		INSERT INTO CART (BREAD_SIZE, ROASTING, BASIC_IDX, USERID, STORE_CODE, CNT, ONE_TOTAL)
+			VALUES(#{bread_size}, #{roasting}, #{basic_idx}, #{userid}, #{store_code}, 1, #{one_total})
+	</insert>
+	
+	<select id="selectCart_idx" resultType="String">
+		SELECT MAX(IDX) FROM CART
+	</select>
+	
+	<insert id="insertToCartTopping" parameterType="map">
+		INSERT INTO CARTTOPPING (CART_IDX, NAME, QUAN, ORDERDATE)
+			VALUES(#{cart_idx}, #{toppingName}, 1, SYSDATE)
+	</insert>
+	
+	<update id="updateplusCart">
+		UPDATE CART SET CNT = CNT + 1
+		WHERE IDX = #{idx}
+	</update>
+	
+	<update id="updateminusCart">
+		UPDATE CART SET CNT = CNT - 1
+		WHERE IDX = #{idx}
+	</update>
+	
+	<delete id="deleteMyCartTopping">
+		DELETE FROM CARTTOPPING
+		WHERE CART_IDX = ${idx}
+	</delete>
+	
+	<delete id="deleteMyCart">
+		DELETE FROM CART
+		WHERE IDX = #{idx}
+	</delete>
+	
+	
+	<insert id="userorderTable" parameterType="Map">
+		INSERT INTO USERORDER (ID, ALL_TOTAL, ADDR, ORDERDATE)
+		VALUES(#{userid}, #{all_total}, #{addr}, SYSDATE)
+	</insert>
+	
+	<select id="selectCartByCartIdx" resultType="com.bc.model.vo.CartVO_only" parameterType="String">
+		SELECT *
+		FROM CART
+		WHERE IDX = #{cartIdx}
+	</select>
+	
+	<delete id="deleteCartByCartIdx"  parameterType="String">
+		DELETE CART
+		WHERE IDX = #{cartIdx}
+	</delete>
+	
+	<insert id="insertSuborder" parameterType="map">
+		INSERT INTO SUBORDER (BREAD_SIZE, ROASTING, BASIC_IDX, ID, STORE_CODE, CNT, ONE_TOTAL, ORDERIDX)
+		VALUES (#{bread_size}, #{roasting}, #{basic_idx}, #{id}, #{store_code}, #{cnt}, #{one_total}, (SELECT MAX(IDX) FROM USERORDER))
+	</insert>
+	
+	<select id="selectCartToppingByCartIdx" parameterType="String" resultType="com.bc.model.vo.CartToppingVO">
+		SELECT * FROM CARTTOPPING
+		WHERE CART_IDX = #{cartIdx}
+	</select>
+	
+	<delete id="deleteCartToppingByCartIdx" parameterType="String">
+		DELETE CARTTOPPING
+		WHERE CART_IDX = #{cartIdx}
+	</delete>
+	
+	<insert id="insertOrderedTopping" parameterType="map">
+		INSERT INTO ORDEREDTOPPING(SUBORDER_IDX, NAME, QUAN, ORDERDATE)
+		VALUES ((SELECT MAX(IDX) FROM SUBORDER WHERE ID = #{id}), #{name}, #{quan}, SYSDATE)
+	</insert>
+	
+	<select id="selectSuborderById" parameterType="String" resultType="com.bc.model.vo.SuborderVO">
+		SELECT S.IDX as idx, S.BREAD_SIZE as bread_size, S.ROASTING as roasting,
+			 S.BASIC_IDX as basic_idx, S.ID as id, S.STORE_CODE as store_code,
+			 S.CNT as cnt, S.ONE_TOTAL as one_total, S.ORDERIDX as orderidx,
+			 U.ALL_TOTAL as all_total, B.P_IMG as p_img, B.MENUNAME as menuname
+		FROM SUBORDER S, USERORDER U, BASICMENU B
+		WHERE S.ORDERIDX = U.IDX
+		AND S.BASIC_IDX = B.IDX
+		AND S.ID = #{id}
+	</select>
+	
+	<select id="selectOrderedToppingListBysuborderIdx" parameterType="String" resultType="com.bc.model.vo.OrderedToppingVO">
+		SELECT IDX, NAME, ORDERDATE, QUAN, SUBORDER_IDX
+		FROM ORDEREDTOPPING WHERE SUBORDER_IDX = #{suborderIdx}
+	</select>
+	
+	<update id="leaveUser">
+		UPDATE USERS
+		SET USING = 0
+		WHERE USERID = #{userid}
+	</update>
+	
+	<update id="updateUserCnt" parameterType="String">
+		UPDATE USERS
+		SET CNT = CNT + 1
+		WHERE USERID = #{id}
+	</update>
+	
+	<select id="storeListByName" parameterType="String" resultType="com.bc.model.vo.StoreVO">
+		SELECT *
+		FROM STORE
+		WHERE NAME LIKE '%'||#{name}||'%'
+	</select>
+	
+	<select id="storeListByShop_number" parameterType="String" resultType="com.bc.model.vo.StoreVO">
+		SELECT *
+		FROM STORE
+		WHERE SHOP_NUMBER LIKE '%'||#{shop_number}||'%'
+	</select>
+	
+	<select id="storeListByAddr" parameterType="String" resultType="com.bc.model.vo.StoreVO">
+		SELECT *
+		FROM STORE
+		WHERE ADDR LIKE '%'||#{addr}||'%'
+	</select>
+	
+	<select id="selectInCartStore" parameterType="String" resultType="String">
+		SELECT STORE_CODE
+		FROM CART
+		WHERE USERID = #{id}
+	</select>
+	
+	
+	<select id="selectInCartIdx" parameterType="String" resultType="String">
+		SELECT IDX
+		FROM CART
+		WHERE USERID = #{id}
+	</select>
+	
+	
+	<delete id="deleteInMyCrtTopping" parameterType="String">
+		DELETE CARTTOPPING
+		WHERE CART_IDX = #{cidx}
+		
+	</delete>
+	
+	<delete id="deleteInMyCart" parameterType="String">
+		DELETE CART
+		WHERE USERID = #{id}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,122 @@
+@charset "UTF-8";
+
+.mybusdiv{
+	display: inline-block;
+	width: 350px;
+	height: 200px;
+	margin: 10px;
+	position: relative;
+	text-align: center;
+}
+
+.name_gender{
+	padding: 0 10px;
+	height: 80px;
+}
+
+.mybusdiv .mybusspan{
+	display: inline;
+	position: absolute;
+	bottom: 10px;
+	width: 130px;
+	height: 30px;
+	left: 50%;
+	font-size: 1rem;
+	margin-left: -65px;
+	border-radius: 10px;
+	border: 1px solid;
+	border-color: white;
+	cursor: pointer;
+	
+}
+#name_gender{
+	border-color: black;
+	vertical-align: center;
+}
+#name_gender2{
+	border-color: black;
+	vertical-align: center;
+}
+
+
+.center_v{
+	display: inline;
+	line-height: 20px;
+	vertical-align: middle;
+}
+
+
+#mypage{
+	background-color: white;
+	border-top-left-radius: 20px;
+	border-color: #FEC111;
+	border-style: solid;
+}
+#mycard{background-color: #0E8C43;}
+#myorder{background-color: #FEC111;}
+#mycart{
+	background-color: #ff8040;
+	border-bottom-right-radius: 20px;
+}
+
+#mycard .center_v{
+	color: white;
+}
+#myorder .center_v{
+	color: white;
+}
+#mycart .center_v{
+	color: white;
+}
+
+.mybusdiv a:hover{
+	font-weight: 600;
+	color: black;
+}
+#mypage .name_gender .user{
+	color: black;
+}
+.user{
+	line-height: 120px;
+	font-size: 2rem;
+	font-weight: bolder;
+	color: white;
+}
+#checkpwd{
+	position: absolute;
+	top: 20%;
+	left:50%;
+	margin-left: -250px;
+	z-index:3;
+	width: 500px;
+	height: 250px;
+	display: none;
+	background-color: gray;
+}
+#checkpwd a{
+	position:absolute;
+	width: 100px;
+	left: 50%;
+	margin-left: -50px;
+}
+#checkpwd a:hover{
+	color: #FEC111;
+}
+#checkpwd th{
+	
+}
+
+table{
+	width:400px;
+	margin: auto;
+}
+#pwdinput{
+	display: block;
+	margin: 0 auto;
+}
+#maindiv{
+	z-index: 1;
+}
+body{
+	z-index: 1;
+}

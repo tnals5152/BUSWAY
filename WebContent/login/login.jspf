@@ -1,0 +1,91 @@
+<%@page import="com.bc.model.vo.UsersVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%-- <%
+	String id = request.getParameter("id");
+	String inputpwd = request.getParameter("inputpwd");
+	String logtry = request.getParameter("logtry");
+	System.out.println("logtry : " + logtry);
+	String find = request.getParameter("find");//아이디 찾기 실행 후 리턴 되는 쪽
+	
+%>
+ --%>
+<div id="pagecontainer">
+	<div id="contentwrap">
+<c:if test="${empty user }">
+	<span id="forloginbar"><span class="point"><img id="onlogin" class="login" src="login\logout.png" 
+		alt="로그아웃이미지"></span>
+		<span class="loginsign" id="loginid">
+			<a class="loginch" id="loginpop">Login</a><br>
+			<a class="loginch" onclick="sign()">SignUp</a>
+		</span>
+	</span>
+</c:if>
+<c:if test="${not empty user }">
+	<span id="forlogoutbar" class="point"><img id="onlogout" class="login" src="login\login.png"
+		alt="로그인이미지" onMouseOver="forlogoutms()">
+		<span class="loginsign" id="logoutid">
+			<a class="loginch" onclick="mypage()">MyPage</a><br>
+			<a class="loginch" id="logoutpop" href="logout">Logout</a>
+		</span>
+	</span>
+</c:if>
+
+
+
+
+
+<div id="loginpopup">
+	<div class="center">
+		<br>
+		<img class="logoimg" src="main\buswaylogo.PNG">
+		<br>
+		<span class="loginspan">로그인</span>
+		<br><br>
+		<form class="center" name="frm" method="post">
+		
+			<table class="logintable">
+				<tr>
+					<td>
+					<input id="id" class="loginfont" type="text" name="id" size="19" placeholder="ID">
+					</td>
+				</tr>
+				<tr>
+					<td><input class="loginfont" type="password" name="pwd" size="19" placeholder="PASSWORD" onkeyup="enterkey()"></td>
+			</table>
+			<div id="adminlogin"><span class="point" onclick="admin_login()">관리자 로그인</span> &nbsp;
+			<a class = "point" onclick="find_id()">ID/PW 찾기</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+			<br>
+			<a class="loginbutton" onclick="login()">로그인</a><br>
+			<a class="signbutton" onclick="sign()">회원가입</a>
+			<input type="hidden" name="nowPage" value="">
+			<input type="hidden" name="searchquery" value="">
+		</form>
+		<a href="#" class="close">닫기</a>
+	</div>
+</div>
+
+
+<div id="logoutpopup">
+	<div class="center">
+		<br>
+		<img class="logoimg" src="main\buswaylogo.PNG">
+		<br>
+		<span class="loginspan">${user.getNickname() }님</span>
+		<br>
+		
+		
+		
+		<a class="loginbutton" onclick="mypage()">마이페이지</a><br>
+		<a class="signbutton" onclick="logout()">로그아웃</a>
+		<br>
+		<a href="#" class="close">닫기</a><br>
+		<a class="leavebutton" style="font-size: 0.8em; background-color:black; color:white;" onclick="leave()">탈퇴</a>
+	</div>
+</div>
+
+
+
+
+

@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+    <h1 id="busway"><a href="shop.jsp">BUSWAY</a></h1>
+    <hr>
+    <div id="drop">
+        <ul id="nav">
+            <li><a href="shop.jsp" class="active" style=" width:200px;"><span>메뉴소개</span></a>
+                <ul class="menu_sub">
+                    <li><a href="product?menusort=1">샌드위치</a></li>
+                    <li><a href="product_list.jsp?menusort=2">찹샐러드</a></li>
+                    <li><a href="product_list.jsp?menusort=3">랩</a></li>
+                    <li><a href="product_list.jsp?menusort=4">스마일썹</a></li>
+                    <li><a href="product_list.jsp?menusort=5">단체메뉴</a></li>
+                </ul>
+            </li>
+        	<li><a href="#" style="width:200px;"><span>새소식</span></a>
+	            <ul class="menu_sub">
+	                <li><a href="#">이벤트, 프로모션</a></li>
+	                <li><a href="#">뉴스, 공지사항</a></li>
+	                <li><a href="javascript:location.href='controller?type=Q_BBS'">문의하기</a></li>
+	            </ul>
+	        </li>
+	        <li><a href="#"  style="width:200px;"><span>주문하기</span></a>
+	            <ul class="menu_sub">
+	                <li><a href="#">매장찾기</a></li>
+	                <li><a href="#">FAST-BUS</a></li>
+	            </ul>
+	        </li>
+        </ul>
+    </div>
+
+    <hr>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

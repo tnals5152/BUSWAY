@@ -1,0 +1,25 @@
+@charset "UTF-8";
+#inputuser{
+	display:absolute;
+	padding: 100px 0px;
+	width: 620px;
+	margin: auto;
+	/*border: 1px solid gray;*/
+	
+}
+/* #inputuser td, th{
+border: 1px solid;
+} */
+#inputuser th{
+	width: 100px;
+}
+#inputuser td{
+	width: 250px;
+}
+.pass{
+	 text-align:center;
+}
+.pass a{
+	font-size: 1.2em;
+	background-color: #FEC111;
+}

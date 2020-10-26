@@ -1,0 +1,135 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <h1 id="busway"><a href="shop.jsp">BUSWAY</a></h1>
+    <hr>
+    <div id="drop">
+    
+        <ul id="nav">
+            <li><a class="active">메뉴소개</a>
+                <ul class="menu_sub">
+                    <li><a href="product_list.jsp?menusort=1">샌드위치</a></li>
+                    <li><a href="product_list.jsp?menusort=2">찹샐러드</a></li>
+                    <li><a href="product_list.jsp?menusort=3">랩</a></li>
+                    <li><a href="product_list.jsp?menusort=4">스마일썹</a></li>
+                    <li><a href="product_list.jsp?menusort=5">단체메뉴</a></li>
+                </ul>
+            </li>
+        <li><a href="#">새소식</a>
+            <ul class="menu_sub">
+                <li><a href="#">이벤트, 프로모션</a></li>
+                <li><a href="#">뉴스, 공지사항</a></li>
+                <li><a href="#">문의하기</a></li>
+            </ul>
+        </li>
+        <li><a href="#">주문하기</a>
+            <ul class="menu_sub">
+                <li><a href="#">매장찾기</a></li>
+                <li><a href="#">FAST-BUS</a></li>
+            </ul>
+        </li>
+        </ul>
+    </div>
+    <hr>
+    <table>
+		<thead>
+			<tr>
+				<th width="15%">제품명</th>
+				<th width="20%">이미지</th>
+				<th width="15%">판매가격</th>
+			</tr>
+		</thead>
+		<tbody>
+		<%--등록된 제품이 없는 경우 --%>
+	<c:if test="${empty list }">
+		<tr>
+			<td colspan='5'>현재 등록된 제품이 없습니다</td>
+		</tr>
+	</c:if>
+	<%--등록된 제품이 있는 경우 --%>
+	<c:if test="${not empty list }">
+		<c:forEach var="vo" items="${list }">
+			<tr>
+				<td><a href="product_content.jsp?idx=${vo.getIdx() }">${vo.getMenuname() }</a></td>
+				<td>
+					<img src="images/${vo.getP_img() }" width="100px" height="95px">
+				</td>
+				<c:if test="${menusort == '샌드위치' }">   
+				<td>15cm:${vo.getPrice15() }원 		30cm:${vo.getPrice30() }원</td>
+				</c:if>
+				<c:if test="${menusort == '찹샐러드' }">   
+				<td>${vo.getPrice15() }원</td>
+				</c:if>
+				<c:if test="${menusort == '랩' }">   
+				<td>${vo.getPrice15() }원</td>
+				</c:if>
+				<c:if test="${menusort == '스마일썹' }">   
+				<td>${vo.getPrice15() }원</td>
+				</c:if>
+				<c:if test="${menusort == '단체메뉴' }">   
+				<td>${vo.getPrice15() }원</td>
+				</c:if>
+			</tr>
+		</c:forEach>
+		</c:if>
+		</tbody>
+	</table>
+    <hr>
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

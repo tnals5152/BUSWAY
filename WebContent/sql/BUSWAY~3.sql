@@ -1,0 +1,244 @@
+
+create sequence BASICMENU_SEQ
+increment 
+by 1
+start with 1
+nocache;
+
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '치킨 마리나라 플랫브래드', 3900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '에그마요', 4300, 8000);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '햄', 4700, 8400);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '참치', 4800, 8500);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '미트볼', 4900, 8700);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '비엘티', 5100, 8900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '이탈리안 비엠티', 5100, 8900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '베지', 3900, 7400);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '터키', 5100, 8900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '써브웨이 클럽', 5600, 9500);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '로스트 비프', 5900, 9900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '로티세리 치킨', 5900, 9900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '로스트 치킨', 5900, 9900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '치킨 데리야끼', 5600, 9500);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '터키 베이컨', 5600, 9500);I
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '스파이시 이탈리안', 5600, 9500);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '치킨베이컨 랜치', 5900, 9900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '써브웨이 멜트', 5900, 9900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '풀드포크', 5900, 9900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '스테이크&치즈', 6300, 10300);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15, PRICE30)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '터키 베이컨 아보카도', 6300, 10300);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '웨스턴, 에그&치즈', 2900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '베이컨, 에그&치즈', 2900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '스테이크, 에그&치즈', 3900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '샌드위치', '햄, 에그&치즈', 2900);
+
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '베지 찹샐러드', 5300);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '에그마요 칩샐러드', 5600);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '클래식 메뉴 찹샐러드', 6000);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '추천메뉴 찹샐러드', 6400);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '베스트 메뉴 찹샐러드', 6800);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '프리미엄 메뉴 찹샐러드', 7300);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '스테이크&치즈 찹샐러드', 7600);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '찹샐러드', '터키베이컨 아보카도 찹샐러드', 7600);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '스마일썹', '스모어스 쿠키', 1000);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '스마일썹', '이탈리안 미니 랩', 7600);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '스마일썹', '살사 더블치즈나초', 3600);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '스마일썹', '치킨 베이컨 미니 랩', 2900);
+
+INSERT INTO BASICMENU
+            (IDX, MENUSORT, MENUNAME, PRICE15)
+VALUES (BASICMENU_SEQ.nextVal, '스마일썹', '웨지 포테이토', 1500);
+
+
+
+
+
+CREATE TABLE alltopping
+(
+    sort     VARCHAR2(20)    NULL, 
+    name     VARCHAR2(20)    NOT NULL, 
+    price    VARCHAR2(20)    NULL, 
+    CONSTRAINT ALLTOPPING_PK PRIMARY KEY (name)
+)
+/
+
+COMMENT ON TABLE alltopping IS '토핑들 저장된 테이블(빵, 치즈, 채소,...)'
+/
+
+COMMENT ON COLUMN alltopping.sort IS '종류(빵, 치즈, 채소..)'
+/
+
+COMMENT ON COLUMN alltopping.name IS '토핑이름'
+/
+
+COMMENT ON COLUMN alltopping.price IS '토핑가격'
+/
+
+
+
+
+CREATE TABLE basictopping
+(
+    idx         NUMBER          NOT NULL, 
+    quan        NUMBER          NOT NULL, 
+    menu_idx    NUMBER          NOT NULL, 
+    name        VARCHAR2(20)    NOT NULL, 
+    CONSTRAINT BASICTOPPING_PK PRIMARY KEY (idx)
+)
+/
+
+CREATE SEQUENCE basictopping_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER basictopping_AI_TRG
+BEFORE INSERT ON basictopping 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT basictopping_SEQ.NEXTVAL
+    INTO :NEW.idx
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER basictopping_AI_TRG;
+/
+
+--DROP SEQUENCE basictopping_SEQ;
+/
+
+COMMENT ON TABLE basictopping IS '기본메뉴에 포함된 토핑'
+/
+
+COMMENT ON COLUMN basictopping.idx IS '인덱스'
+/
+
+COMMENT ON COLUMN basictopping.quan IS '토핑개수'
+/
+
+COMMENT ON COLUMN basictopping.menu_idx IS '기본메뉴순서'
+/
+
+COMMENT ON COLUMN basictopping.name IS '토핑이름'
+/
+
+ALTER TABLE basictopping
+    ADD CONSTRAINT FK_basictopping_menu_idx_basic FOREIGN KEY (menu_idx)
+        REFERENCES basicmenu (idx)
+/
+
+ALTER TABLE basictopping
+    ADD CONSTRAINT FK_basictopping_name_alltoppin FOREIGN KEY (name)
+        REFERENCES alltopping (name)
+/

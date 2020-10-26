@@ -1,0 +1,40 @@
+
+    #mainDiv{
+    	/* width: 780px; */
+    	width: 100%;
+        margin: 0 auto;
+        position: relative;
+        z-index:1;
+    }
+    iframe{
+    	margin: 0 auto;
+        position: relative;
+        left: 20%;
+    }
+    #prev {
+        width: 50px; height: 40px;
+        border-radius: 25%;
+        position: absolute;
+        left: 10%;
+        top: 45%; 
+        
+    }
+    #next { 
+        width: 50px; height: 40px;
+        border-radius: 25%;
+		position: absolute; 
+		left: 90%;
+        top: 45%; 
+    
+     }
+    #img {
+    	/* width: 780px; height: 300px; */ width: 100%;
+    }
+    
+    #use{
+    	width: 400px; height: 300px;
+    }
+    #use2{
+    	width: 700px; height: 300px;
+    	
+    }

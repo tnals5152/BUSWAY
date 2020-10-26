@@ -1,0 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+</div>
+	<br><br>
+    <footer id="footerreal">
+        <div id="footer">
+            
+              <a href="/">메인</a>
+              <a href="/notice">공지사항</a>
+              <a href="[##_taglog_link_##]">메뉴소개</a>
+              <a href="[##_guestbook_link_##]">문의</a>
+              <a href="[##_owner_url_##]">관리자</a>
+              <br>
+              Copyright ⓒ <a href="6조"> 6조꺼ㅎㅎㅎ</a> This site is powered by <a href="http://tistory.com" onclick="window.open(this.href); return false">6조^.^</a> /
+              Designed by <a href="박우범^^" onclick="window.open(this.href); return false">김성현, 박우범, 지수민</a>
+            
+          </div>
+          <!-- footer close -->
+    </footer>
+</div>
